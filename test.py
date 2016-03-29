@@ -5,7 +5,8 @@ import unittest
 class LionTest (TestCase) :
     def test_init (self) :
         res = Lion(1, "hunter")
-        self.assertEqual(0, res.state, "wrong")
+   #     self.assertEqual(0, res.state, "wrong")
+        self.assertEqual(1, res.state, "wrong")
         self.assertEqual("run", res.action, "wrong")
 
         res = Lion(1, "antelope")
