@@ -1,32 +1,26 @@
 class Lion:
-    def __init__(self):
-        self.state = "голодный"
+    def __init__(self, state_init):
+        self.state = state_init
     def behaving(self, object):
         if object == "антилопа":
             if self.state == "голодный":
-                print("съесть")
+                action = "съесть"
                 self.state="сытый"
             else:
-                print("спать")
+                action = "спать"
                 self.state = "голодный"
-            print("стал " + self.state)
+            return action + " " + self.state
         elif object == "охотник":
-            print("убежать")
+            action ="убежать"
             if self.state == "сытый":
                 self.state = "голодный"
-            print("стал " + self.state)
+            return action + " " + self.state
         elif object == "дерево":
             if self.state == "голодный":
-                print("спать")
+                action = "спать"
             else:
-                print("смотреть")
+                action = "смотреть"
                 self.state = "голодный"
-            print("стал " + self.state)
+            return action + " " + self.state
         else:
-            print("данного объекта не предусмотрено")
-
-
-lion = Lion()
-lion.behaving("дерево")
-lion.behaving("пыпп")
-lion.behaving("антилопа")
+            return "данного объекта не предусмотрено"
