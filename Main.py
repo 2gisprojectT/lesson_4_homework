@@ -1,3 +1,7 @@
+class EventException(Exception):
+    pass
+
+
 class Lion(object):
     def __init__(self, event, condition):
         self.condition = condition
@@ -22,7 +26,7 @@ class Lion(object):
         elif self.event == "Дерево":
             self.action = "Спать"
         else:
-            raise ValueError("Неверный параметр события")
+            raise EventException("Неверный параметр события")
 
     def notHungry(self):
         self.condition = "Голодный"
@@ -33,5 +37,4 @@ class Lion(object):
         elif self.event == "Дерево":
             self.action = "Смотреть"
         else:
-            raise ValueError("Неверный параметр события")
-
+            raise EventException("Неверный параметр события")
