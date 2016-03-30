@@ -6,7 +6,6 @@ class Lion(object):
     def __init__(self, event, condition):
         self.condition = condition
         self.event = event
-        self.action = ""
         self.isHungry()
 
     def isHungry(self):

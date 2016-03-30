@@ -3,7 +3,7 @@ import unittest
 
 
 class LionUniTest(unittest.TestCase):
-    def test_args(self):
+    def test_LionIO(self):
         self.assertRaises(ValueError, Lion, "Дерево", "randombred")
         self.assertRaises(EventException, Lion, "randombred", "Сытый")
 
