@@ -1,9 +1,12 @@
-from Main import Lion
+from Main import *
 import unittest
 
 
 class LionUniTest(unittest.TestCase):
-    def test_LionTestIO(self):
+    def test_args(self):
+        self.assertRaises(ValueError, Lion, "Дерево", "randombred")
+        self.assertRaises(EventException, Lion, "randombred", "Сытый")
+
         res = Lion("Дерево", "Голодный")
         self.assertEqual("Спать", res.action, "False")
         self.assertEqual("Голодный", res.condition, "False")
