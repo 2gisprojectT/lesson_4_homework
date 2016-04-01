@@ -6,7 +6,7 @@ class LionSateFMS_Test(TestCase):
 
     #Тест вывода ошибки конструктором, при вводе не верных значений символа и состояния
     def test_init(self):
-        self.assertRaises(NameError, LionStateFSM("фывваыв", "sdfaf"))
+        self.assertRaises(NameError, LionStateFSM, "фывваыв", "sdfaf")
 
     #Тест корректности работы конечного автомата состояния
     def test_fms(self):
