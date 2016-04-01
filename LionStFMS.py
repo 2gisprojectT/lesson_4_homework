@@ -17,21 +17,21 @@ class LionStateFSM:
         if self.obj == "антилопа":
             if self.state == "сытый":
                 self.action = "спать"
-                self.state == "голодный"
+                self.state = "голодный"
             else:
                 self.action = "съесть"
-                self.state == "сытый"
+                self.state = "сытый"
         if self.obj == "охотник":
             if self.state == "сытый":
                 self.action = "убежать"
-                self.state == "голодный"
+                self.state = "голодный"
             else:
                 self.action = "убежать"
 
         if self.obj == "дерево":
             if self.state == "сытый":
                 self.action = "смотреть"
-                self.state == "голодный"
+                self.state = "голодный"
             else:
                 self.action = "спать"
         print("Объект: " + self.obj + "| Действие: " + self.action + "| Новое_Состояние :" + self.state)
