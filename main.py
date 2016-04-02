@@ -1,8 +1,7 @@
 class Lion:
     def __init__(self, state_init):
-        if (state_init != "голодный" or state_init!= "сытый"):
-            print("недопустимое состояние! Принудительно задается: голодный")
-            self.state = "голодный"
+        if (state_init != "голодный" and state_init!= "сытый"):
+            raise ValueError
         else:
             self.state = state_init
 
