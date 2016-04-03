@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/evgenijkatunov/lesson_4_homework.svg?branch=LionAutomat)](https://travis-ci.org/evgenijkatunov/lesson_4_homework)
+[![Build Status](https://api.travis-ci.org/2gisprojectT/lesson_4_homework.svg?branch=Main)](https://travis-ci.org/2gisprojectT/lesson_4_homework)
 
 # ProjectT spring-2016 - Домашнее задание #4
 ## Задание
