@@ -2,34 +2,31 @@ from enum import Enum
 
 
 class Lion:
-    def __init__(self,state):
-        self.err=0;
+    def __new__(cls,state):
         if state.upper()=="СЫТЫЙ" or state.upper()=="ГОЛОДНЫЙ":
-            self.state=state.upper();
+            return super(Lion,cls).__new__(cls);
         else:
-            self.err="Неверный входной параметр";
+            return None;
+    def __init__(self,state):
+        self.state=state.upper();
     def input(self,obj):
-        if (self.err==0):
-            if self.state=="СЫТЫЙ":
-                if obj.upper()=="АНТИЛОПА":
-                    self.action="Спать";
-                elif obj.upper()=="ОХОТНИК":
-                    self.action="Убежать";
-                elif obj.upper()=="ДЕРЕВО":
-                    self.action="Смотреть";
-                else:
-                    self.err="Неверный символ";
-                    return;
-                self.state="ГОЛОДНЫЙ";
-            elif self.state=="ГОЛОДНЫЙ":
-                if obj.upper()=="АНТИЛОПА":
-                    self.action="Съесть";
-                    self.state="СЫТЫЙ";
-                elif obj.upper()=="ОХОТНИК":
-                    self.action="Убежать";
-                elif obj.upper()=="ДЕРЕВО":
-                    self.action="Спать";
-                else:
-                    self.err="Неверный символ";
-                    return;
-        return;
+        if self.state=="СЫТЫЙ":
+            if obj.upper()=="АНТИЛОПА":
+                self.action="Спать";
+            elif obj.upper()=="ОХОТНИК":
+                self.action="Убежать";
+            elif obj.upper()=="ДЕРЕВО":
+                self.action="Смотреть";
+            else:
+                return "Неверный символ";
+            self.state="ГОЛОДНЫЙ";
+        elif self.state=="ГОЛОДНЫЙ":
+            if obj.upper()=="АНТИЛОПА":
+                self.action="Съесть";
+                self.state="СЫТЫЙ";
+            elif obj.upper()=="ОХОТНИК":
+                self.action="Убежать";
+            elif obj.upper()=="ДЕРЕВО":
+                self.action="Спать";
+            else:
+                return "Неверный символ";

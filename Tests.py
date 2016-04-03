@@ -9,7 +9,7 @@ class LionTest(TestCase):
 
     def test_constrcuctor_negative(self):
         lion=Lion("sds");
-        self.assertEqual("Неверный входной параметр",lion.err,"Error does not set");
+        self.assertIsNone(lion,"Lion created");
 
     def test_wellfed_antilopa(self):
         lion=Lion("СыТый");
@@ -49,15 +49,15 @@ class LionTest(TestCase):
 
     def test_negative_hunry(self):
         lion=Lion("ГолоДныЙ");
-        lion.input("Чтото");
+        self.assertEqual("Неверный символ", lion.input("Чтото"), 'Return not error');
         self.assertEqual("ГОЛОДНЫЙ", lion.state, 'STATE have wrong value');
-        self.assertEqual("Неверный символ", lion.err, 'Error does not set');
+
 
     def test_negative_wellfed(self):
         lion=Lion("Сытый");
-        lion.input("Чтото");
+        self.assertEqual("Неверный символ", lion.input("Чтото"), 'Return not error');
         self.assertEqual("СЫТЫЙ", lion.state, 'STATE have wrong value');
-        self.assertEqual("Неверный символ", lion.err, 'Error does not set');
+
 
 
 if __name__ == '__main__':
