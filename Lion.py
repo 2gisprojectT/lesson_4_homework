@@ -1,37 +1,43 @@
 class Lion:
+    def __new__(cls,state):
+        if state.lower() == "голодный" or state.lower() == "сытый":
+            return super(Lion,cls).__new__(cls)
+        else:
+            return None
+
     def __init__(self, condition):
         self.state = condition.lower()
 
-    def action(self, symbol):
+    def transition(self, symbol):
         symbol = symbol.lower()
         if symbol == "антилопа":
-            return self.antelope()
-        if symbol == "охотник":
-            return self.hunter()
-        if symbol == "дерево":
-            return self.tree()
+            self.__antelope()
+        elif symbol == "охотник":
+            self.__hunter()
+        elif symbol == "дерево":
+            self.__tree()
         else:
-            return "?"
+            return "Неверный входной символ"
 
-    def antelope(self):
+    def __antelope(self):
         if self.state == "голодный":
             self.state = "сытый"
-            return "съесть"
-        if self.state == "сытый":
+            self.action = "съесть"
+        elif self.state == "сытый":
             self.state = "голодный"
-            return "спать"
+            self.action = "спать"
 
-    def hunter(self):
+    def __hunter(self):
         if self.state == "голодный":
-            return "убежать"
-        if self.state == "сытый":
+            self.action = "убежать"
+        elif self.state == "сытый":
             self.state = "голодный"
-            return "убежать"
+            self.action = "убежать"
 
-    def tree(self):
+    def __tree(self):
         if self.state == "голодный":
                 self.state = "голодный"
-                return "спать"
-        if self.state == "сытый":
+                self.action = "спать"
+        elif self.state == "сытый":
                 self.state = "голодный"
-                return "смотреть"
+                self.action = "смотреть"
