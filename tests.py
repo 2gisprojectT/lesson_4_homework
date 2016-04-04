@@ -5,8 +5,7 @@ from main import Lion
 
 class LionTests(TestCase):
     def test_constructor_wrong(self):
-        with self.assertRaises(ValueError):
-            lion = Lion("рырыл222")
+        self.assertRaises(ValueError, Lion, "рырыл222")
 
     def test_constructor_right(self):
         lion = Lion("сытый")
@@ -20,7 +19,7 @@ class LionTests(TestCase):
        lion = Lion("сытый")
        self.assertEqual(lion.behaving("дерево"), "смотреть голодный")
 
-    def test_unknownObj(self):
+    def test_unknown_obj(self):
         lion = Lion("голодный")
         self.assertEqual(lion.behaving("вфвфв"), "данного объекта не предусмотрено")
 

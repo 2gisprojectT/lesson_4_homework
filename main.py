@@ -1,6 +1,6 @@
 class Lion:
     def __init__(self, state_init):
-        if (state_init != "голодный" and state_init!= "сытый"):
+        if state_init != "голодный" and state_init != "сытый":
             raise ValueError
         else:
             self.state = state_init
@@ -9,13 +9,13 @@ class Lion:
         if object == "антилопа":
             if self.state == "голодный":
                 action = "съесть"
-                self.state="сытый"
+                self.state = "сытый"
             else:
                 action = "спать"
                 self.state = "голодный"
             return action + " " + self.state
         elif object == "охотник":
-            action ="убежать"
+            action = "убежать"
             if self.state == "сытый":
                 self.state = "голодный"
             return action + " " + self.state
