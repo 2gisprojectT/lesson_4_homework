@@ -5,17 +5,12 @@ from main import Lion
 
 class LionTests(TestCase):
     def test_constructor_wrong(self):
-        try:
+        with self.assertRaises(ValueError):
             lion = Lion("рырыл222")
-        except ValueError:
-            print("недопустимое состояние")
 
     def test_constructor_right(self):
-        try:
-            lion = Lion("сытый")
-            self.assertEqual(lion.state, "сытый")
-        except ValueError:
-            print("недопустимое состояние")
+        lion = Lion("сытый")
+        self.assertEqual(lion.state, "сытый")
 
     def test_tree_hungry(self):
         lion = Lion("голодный")
