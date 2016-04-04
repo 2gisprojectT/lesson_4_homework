@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/2gisprojectT/lesson_4_homework.svg?branch=выполнение_ДЗ_№4)](https://travis-ci.org/2gisprojectT/lesson_4_homework)
+[![Build Status](https://travis-ci.org/2gisprojectT/lesson_4_homework.svg?branch=master)](https://travis-ci.org/2gisprojectT/lesson_4_homework)
 
 # ProjectT spring-2016 - Домашнее задание #4
 ## Задание
