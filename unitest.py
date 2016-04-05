@@ -7,13 +7,19 @@ class LionUniTest(unittest.TestCase):
         self.assertRaises(ValueError, Lion, "Дерево", "randombred")
         self.assertRaises(EventException, Lion, "randombred", "Сытый")
 
+
         res = Lion("Дерево", "Голодный")
         self.assertEqual("Спать", res.action, "False")
         self.assertEqual("Голодный", res.condition, "False")
 
+        res.introduce_new_event("Антилопа")
+        self.assertEqual("Съесть", res.action,"False")
+        self.assertEqual("Сытый", res.condition,"False")
+
         res = Lion("Дерево", "Сытый")
         self.assertEqual("Смотреть", res.action, "False")
         self.assertEqual("Голодный", res.condition, "False")
+
 
         res = Lion("Охотник", "Голодный")
         self.assertEqual("Бежать", res.action, "False")
@@ -23,9 +29,17 @@ class LionUniTest(unittest.TestCase):
         self.assertEqual("Бежать", res.action, "False")
         self.assertEqual("Голодный", res.condition, "False")
 
+        res.introduce_new_event("Охотник")
+        self.assertEqual("Бежать", res.action, "False")
+        self.assertEqual("Голодный", res.condition, "False")
+
         res = Lion("Антилопа", "Голодный")
         self.assertEqual("Съесть", res.action, "False")
         self.assertEqual("Сытый", res.condition, "False")
+
+        res.introduce_new_event("Антилопа")
+        self.assertEqual("Спать", res.action, "False")
+        self.assertEqual("Голодный", res.condition, "False")
 
         res = Lion("Антилопа", "Сытый")
         self.assertEqual("Спать", res.action, "False")
