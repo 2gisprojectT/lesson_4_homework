@@ -13,8 +13,8 @@ class LionUnittest(TestCase):
         self.assertEqual("сытый", lion.state)
 
     def test_new_negative(self):
-        lion=Lion("уставший")
-        self.assertIsNone(lion)
+        lion = Lion("уставший")
+        self.assertIsNone(lion.state)
 
     def test_transition_hungry_antelope(self):
         lion = Lion("голодный")

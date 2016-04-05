@@ -1,12 +1,9 @@
 class Lion:
-    def __new__(cls,state):
+    def __init__(self,state):
         if state.lower() == "голодный" or state.lower() == "сытый":
-            return super(Lion,cls).__new__(cls)
+            self.state = state.lower()
         else:
-            return None
-
-    def __init__(self, condition):
-        self.state = condition.lower()
+            self.state = None
 
     def transition(self, symbol):
         symbol = symbol.lower()
@@ -36,8 +33,8 @@ class Lion:
 
     def __tree(self):
         if self.state == "голодный":
-                self.state = "голодный"
-                self.action = "спать"
+            self.state = "голодный"
+            self.action = "спать"
         elif self.state == "сытый":
-                self.state = "голодный"
-                self.action = "смотреть"
+            self.state = "голодный"
+            self.action = "смотреть"
