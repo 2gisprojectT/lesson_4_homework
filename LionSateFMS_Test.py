@@ -68,7 +68,12 @@ class LionSateFMSTest(TestCase):
     # Тест корректности работы конечного автомата
     def test_fms(self):
         lion = LionStateFSM("сытый")
-        lion.lion_fsm_work()
+        lion.fsm_realisation("охотник")
+        lion.fsm_realisation("антилопа")
+        lion.fsm_realisation("дерево")
+        lion.fsm_realisation("дерево")
+        lion.fsm_realisation("охотник")
+        lion.fsm_realisation("антилопа")
 
 if __name__ == '__main__':
     unittest.main()
