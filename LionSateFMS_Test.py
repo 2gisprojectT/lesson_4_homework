@@ -7,7 +7,12 @@ class LionSateFMSTest(TestCase):
 
     # Тест вывода ошибки конструктором, при вводе не верного значения состояния
     def test_init(self):
-        self.assertRaises(NameError, LionStateFSM, "jhlkhlk")
+        self.assertRaises(ValueError, LionStateFSM, "сонный")
+
+    # Тест вывода ошибки, при вводе не верного значения объекта
+    def test_fms_bad_obj(self):
+        lion = LionStateFSM("голодный")
+        self.assertRaises(ValueError, lion.fsm_realisation, "обезьяна")
 
     # Тест вывода ошибки конструктором, при ошибке исходного состояния голодный
     def test_init_hungry(self):
@@ -63,7 +68,7 @@ class LionSateFMSTest(TestCase):
     # Тест корректности работы конечного автомата
     def test_fms(self):
         lion = LionStateFSM("сытый")
-        lion.lion_fms_work()
+        lion.lion_fsm_work()
 
 if __name__ == '__main__':
     unittest.main()
