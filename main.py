@@ -2,13 +2,11 @@ from enum import Enum
 
 
 class Lion:
-    def __new__(cls,state):
-        if state.upper()=="СЫТЫЙ" or state.upper()=="ГОЛОДНЫЙ":
-            return super(Lion,cls).__new__(cls);
-        else:
-            return None;
     def __init__(self,state):
-        self.state=state.upper();
+        if state.upper()=="ГОЛОДНЫЙ":
+            self.state="ГОЛОДНЫЙ";
+        else:
+            self.state="СЫТЫЙ";
     def input(self,obj):
         if self.state=="СЫТЫЙ":
             if obj.upper()=="АНТИЛОПА":

@@ -4,12 +4,12 @@ import unittest
 
 class LionTest(TestCase):
     def test_constrcuctor_positive(self):
-        lion=Lion("СыТый");
-        self.assertEqual("СЫТЫЙ", lion.state, 'STATE have wrong value');
+        lion=Lion("ГолоднЫй");
+        self.assertEqual("ГОЛОДНЫЙ", lion.state, 'STATE have wrong value');
 
     def test_constrcuctor_negative(self):
         lion=Lion("sds");
-        self.assertIsNone(lion,"Lion created");
+        self.assertEqual("СЫТЫЙ",lion.state, "State not default(СЫТЫЙ)");
 
     def test_wellfed_antilopa(self):
         lion=Lion("СыТый");
