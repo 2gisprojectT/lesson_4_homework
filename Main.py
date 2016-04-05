@@ -2,7 +2,7 @@ class EventException(Exception):
     pass
 
 
-class Lion(object):
+class lion(object):
     def __init__(self, event, condition):
         self.condition = condition
         self.event = event
