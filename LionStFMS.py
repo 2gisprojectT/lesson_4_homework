@@ -7,7 +7,6 @@ class LionStateFSM:
             self.state = state
         else:
             raise ValueError("Нет такого состояния: ", state)
-        self.obj_list = ['антилопа', 'охотник', 'дерево']
         self.state_list = [
                             ['антилопа', 'сытый', 'спать', 'голодный'],
                             ['антилопа', 'голодный', 'съесть', 'сытый'],
