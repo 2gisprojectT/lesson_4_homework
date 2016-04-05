@@ -1,43 +1,40 @@
 
 class LionStateFSM:
-    objects_list = ["антилопа", "охотник", "дерево"]
+    objects_list = ["антилопа", "охотник", "дерево", "охотник", "антилопа", "дерево"]
 
     # Инициализируем льва с определенным состоянием
     def __init__(self, state):
         if state == "сытый" or state == "голодный":
-            self.state = state.lower()
+            self.state = state
         else:
-            raise NameError("Нет такого состояния")
+            raise ValueError("Нет такого состояния: ", state)
+        self.lion_list = [
+                            ['антилопа', 'сытый', 'спать', 'голодный'],
+                            ['антилопа', 'голодный', 'съесть', 'сытый'],
+                            ['охотник', 'сытый', 'убежать', 'голодный'],
+                            ['охотник', 'голодный', 'убежать', 'голодный'],
+                            ['дерево', 'сытый', 'смотреть', 'голодный'],
+                            ['дерево', 'голодный', 'спать', 'голодный']
+                        ]
         self.action = ""
 
-    # Реализация конечного автомата состояния льва
+    # Реализация методов конечного автомата состояния льва
+    # Сравниваем входной объек и состояние льва с объектами и состояниями списка
+    # Если находим совпадение осуществляем действие и переходим в новое состояние
     def fsm_realisation(self, obj):
-        print("Исходное состояние :" + self.state)
-        if obj == "антилопа":
-            if self.state == "сытый":
-                self.action = "спать"
-                self.state = "голодный"
-            else:
-                self.action = "съесть"
-                self.state = "сытый"
-        if obj == "охотник":
-            if self.state == "сытый":
-                self.action = "убежать"
-                self.state = "голодный"
-            else:
-                self.action = "убежать"
-        if obj == "дерево":
-            if self.state == "сытый":
-                self.action = "смотреть"
-                self.state = "голодный"
-            else:
-                self.action = "спать"
-        print("Объект: " + obj + "| Действие: " + self.action + "| Новое_Состояние :" + self.state)
-
-    # Запуск FMS для всех возможных объектов в нескольких циклах
-    def lion_fms_work(self):
         n = 0
-        while n < 3:
-            for obj in self.objects_list:
-                self.fsm_realisation(obj)
+        while n < len(self.lion_list):
+            if obj == self.lion_list[n][0] and self.state == self.lion_list[n][1]:
+                self.action = self.lion_list[n][2]
+                self.state = self.lion_list[n][3]
+                print("Исходное состояние: " + self.lion_list[n][1] + " | Объект: " + obj + " | Действие: " + self.action + " | Новое_Состояние :" + self.state)
+                break
             n += 1
+        if n == len(self.lion_list):
+            raise ValueError("Нет такой комбинации состояния: {0} + объект: {1}".format(self.state, obj))
+
+    # Запуск FMS для всех объектов из списка objects_list
+    def lion_fsm_work(self):
+        for obj in self.objects_list:
+                self.fsm_realisation(obj)
+                
