@@ -6,17 +6,21 @@ class Lion(object):
     def __init__(self, event, condition):
         self.condition = condition
         self.event = event
-        self.isHungry()
+        self.change_state()
 
-    def isHungry(self):
+    def introduce_new_event(self, event):
+        self.event = event
+        self.change_state()
+
+    def change_state(self):
         if self.condition == "Голодный":
-            self.Hungry()
+            self.hungry()
         elif self.condition == "Сытый":
-            self.notHungry()
+            self.not_hungry()
         else:
             raise ValueError("Неверный параметр Сытый / Голодный")
 
-    def Hungry(self):
+    def hungry(self):
         if self.event == "Антилопа":
             self.action = "Съесть"
             self.condition = "Сытый"
@@ -27,7 +31,7 @@ class Lion(object):
         else:
             raise EventException("Неверный параметр события")
 
-    def notHungry(self):
+    def not_hungry(self):
         self.condition = "Голодный"
         if self.event == "Антилопа":
             self.action = "Спать"
