@@ -4,27 +4,23 @@ class Lion:
             raise ValueError
         else:
             self.state = state_init
+            self.action = ""
 
     def behaving(self, object):
         if object == "антилопа":
             if self.state == "голодный":
-                action = "съесть"
+                self.action = "съесть"
                 self.state = "сытый"
             else:
-                action = "спать"
+                self.action = "спать"
                 self.state = "голодный"
-            return action + " " + self.state
         elif object == "охотник":
-            action = "убежать"
+            self.action = "убежать"
             if self.state == "сытый":
                 self.state = "голодный"
-            return action + " " + self.state
         elif object == "дерево":
             if self.state == "голодный":
-                action = "спать"
+                self.action = "спать"
             else:
-                action = "смотреть"
+                self.action = "смотреть"
                 self.state = "голодный"
-            return action + " " + self.state
-        else:
-            return "данного объекта не предусмотрено"
