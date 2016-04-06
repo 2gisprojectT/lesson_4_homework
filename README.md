@@ -1,4 +1,5 @@
 # ProjectT spring-2016 - Домашнее задание #4
+[![Build Status](https://travis-ci.org/alexley-demin/lesson_4_homework.svg?branch=master)](https://travis-ci.org/alexley-demin/lesson_4_homework.svg)
 ## Задание
 - Пусть дан следующий конечный автомат состояний льва. Входные символы: `антилопа`, `охотник`, `дерево`. Внутренние состояния: `сытый`, `голодный`. Действия автомата: `съесть`, `спать`, `убежать`, `смотреть`. Таблица переходов:
 
