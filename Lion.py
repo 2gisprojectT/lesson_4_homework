@@ -6,13 +6,13 @@ class Lion:
         else:
             raise ValueError("Неверное состояние!")
 
-    def act(self, event):
-        temp_event = event.lower()
-        if temp_event == "антилопа":
+    def act(self, action):
+        event = action.lower()
+        if event == "антилопа":
             self.__antelope()
-        elif temp_event == "охотник":
+        elif event == "охотник":
             self.__hunter()
-        elif temp_event == "дерево":
+        elif event == "дерево":
             self.__tree()
         else:
             raise ValueError("Неверное событие!")
@@ -24,8 +24,6 @@ class Lion:
         elif self.state == "голодный":
             self.action = "съесть"
             self.state = "сытый"
-        else:
-            raise ValueError("Неверное состояние!")
 
     def __hunter(self):
         if self.state == "сытый":
@@ -33,8 +31,6 @@ class Lion:
             self.state = "голодный"
         elif self.state == "голодный":
             self.action = "убежать"
-        else:
-            raise ValueError("Неверное состояние!")
 
     def __tree(self):
         if self.state == "сытый":
@@ -42,6 +38,4 @@ class Lion:
             self.state = "голодный"
         elif self.state == "голодный":
             self.action = "спать"
-        else:
-            raise ValueError("Неверное состояние!")
 
