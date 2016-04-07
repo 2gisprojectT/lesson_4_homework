@@ -14,17 +14,20 @@ class LionTests(TestCase):
     def test_tree_hungry(self):
         lion = Lion("голодный")
         lion.behaving("дерево")
-        self.assertEqual(lion.action + " " + lion.state, "спать голодный")
+        self.assertEqual(lion.action, "спать")
+        self.assertEqual(lion.state, "голодный")
 
     def test_tree_full(self):
        lion = Lion("сытый")
        lion.behaving("дерево")
-       self.assertEqual(lion.action + " " + lion.state, "смотреть голодный")
+       self.assertEqual(lion.action, "смотреть")
+       self.assertEqual(lion.state, "голодный")
 
     def test_unknown_obj(self):
         lion = Lion("голодный")
         lion.behaving("вфвфв")
-        self.assertEqual(lion.action + " " + lion.state, " голодный")
+        self.assertEqual(lion.action, "")
+        self.assertEqual(lion.state, "голодный")
 
     def test_tree_antelope(self):
        lion = Lion("голодный")
@@ -35,20 +38,23 @@ class LionTests(TestCase):
     def test_hunter(self):
         lion = Lion("сытый")
         lion.behaving("охотник")
-        self.assertEqual(lion.action + " " + lion.state, "убежать голодный")
+        self.assertEqual(lion.action, "убежать")
+        self.assertEqual(lion.state, "голодный")
 
     def test_tree_hunter(self):
         lion = Lion("сытый")
         lion.behaving("дерево")
         lion.behaving("охотник")
-        self.assertEqual(lion.action + " " + lion.state, "убежать голодный")
+        self.assertEqual(lion.action, "убежать")
+        self.assertEqual(lion.state, "голодный")
 
     def test_tree_antelope_hunter(self):
         lion = Lion("сытый")
         lion.behaving("дерево")
         lion.behaving("антилопа")
         lion.behaving("охотник")
-        self.assertEqual(lion.action + " " + lion.state, "убежать голодный")
+        self.assertEqual(lion.action, "убежать")
+        self.assertEqual(lion.state, "голодный")
 
 if __name__ == '__main__':
     unittest.main()

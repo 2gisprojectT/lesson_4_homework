@@ -1,26 +1,28 @@
 class Lion:
     def __init__(self, state_init):
         if state_init != "голодный" and state_init != "сытый":
-            raise ValueError
+            raise ValueError("невозможное состояние")
         else:
             self.state = state_init
             self.action = ""
 
-    def behaving(self, object):
-        if object == "антилопа":
+    def behaving(self, obj):
+        if obj == "антилопа":
             if self.state == "голодный":
                 self.action = "съесть"
                 self.state = "сытый"
             else:
                 self.action = "спать"
                 self.state = "голодный"
-        elif object == "охотник":
+        elif obj == "охотник":
             self.action = "убежать"
             if self.state == "сытый":
                 self.state = "голодный"
-        elif object == "дерево":
+        elif obj == "дерево":
             if self.state == "голодный":
                 self.action = "спать"
             else:
                 self.action = "смотреть"
                 self.state = "голодный"
+        else:
+            print("неизвестный объект")
