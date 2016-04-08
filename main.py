@@ -2,9 +2,8 @@ class Lion:
     def __init__(self, state_init):
         if state_init != "голодный" and state_init != "сытый":
             raise ValueError("невозможное состояние")
-        else:
-            self.state = state_init
-            self.action = ""
+        self.state = state_init
+        self.action = ""
 
     def behaving(self, obj):
         if obj == "антилопа":
@@ -24,5 +23,3 @@ class Lion:
             else:
                 self.action = "смотреть"
                 self.state = "голодный"
-        else:
-            print("неизвестный объект")

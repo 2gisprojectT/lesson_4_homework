@@ -33,7 +33,8 @@ class LionTests(TestCase):
        lion = Lion("голодный")
        lion.behaving("дерево")
        lion.behaving("антилопа")
-       self.assertEqual(lion.action + " " + lion.state, "съесть сытый")
+       self.assertEqual(lion.action, "съесть")
+       self.assertEqual(lion.state, "сытый")
 
     def test_hunter(self):
         lion = Lion("сытый")
