@@ -1,7 +1,8 @@
 class Lion:
     def __init__(self, state):
-        if state.lower() == "сытый" or state.lower() == "голодный":
-            self.state = state.lower()
+        state = state.lower()
+        if state == "сытый" or state == "голодный":
+            self.state = state
         else:
             raise ValueError("Неверное состояние")
         self.action = ""
