@@ -25,6 +25,6 @@ class TestLion(TestCase):
                                  'Action is wrong by factor = %s, state = %s'
                                  %(factor, state))
                 i += 1
-
+        self.assertRaises(ValueError, lion.action, 'фыв')
 if __name__ == '__main__':
     unittest.main()
