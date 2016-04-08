@@ -1,11 +1,11 @@
 class Lion:
     def __init__(self, state):
-
         if state.lower() == "сытый" or state.lower() == "голодный":
             self.state = state.lower()
         else:
             raise ValueError("Неверное состояние")
         self.action = ""
+
     def input_object(self, object):
         if self.state == "сытый":
             if object.lower() == "антилопа":
