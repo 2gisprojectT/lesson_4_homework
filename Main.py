@@ -6,11 +6,12 @@ class Lion(object):
     def __init__(self, event, condition):
         self.__condition = condition
         self.__event = event
+
+    def launch(self):
         self.__change_state()
 
-    def introduce_new_event(self, event):
+    def add_event(self, event):
         self.__event = event
-        self.__change_state()
 
     def __change_state(self):
         if self.__condition == "Голодный":
