@@ -1,49 +1,45 @@
 import unittest
 
-from Main import *
+from Main import Lion, EventException
 
 
-class lion_unit_test(unittest.TestCase):
+class LionUnitTest(unittest.TestCase):
     def test_lionIO(self):
-        self.assertRaises(ValueError, lion, "Дерево", "randombred")
-        self.assertRaises(EventException, lion, "randombred", "Сытый")
+        self.assertRaises(ValueError, Lion, "Дерево", "randombred")
+        self.assertRaises(EventException, Lion, "randombred", "Сытый")
 
-        res = lion("Дерево", "Голодный")
-        self.assertEqual("Спать", res.action, "False")
-        self.assertEqual("Голодный", res.condition, "False")
+    def test_hungry_tree(self):
+        res = Lion("Дерево", "Голодный")
+        res.launch()
+        self.assertEqual("Спать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
 
-        res.introduce_new_event("Антилопа")
-        self.assertEqual("Съесть", res.action, "False")
-        self.assertEqual("Сытый", res.condition, "False")
+    def test_satisfied_tree(self):
+        res = Lion("Дерево", "Сытый")
+        res.launch()
+        self.assertEqual("Смотреть", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
 
-        res = lion("Дерево", "Сытый")
-        self.assertEqual("Смотреть", res.action, "False")
-        self.assertEqual("Голодный", res.condition, "False")
+    def test_hungry_hunt(self):
+        res = Lion("Охотник", "Голодный")
+        res.launch()
+        self.assertEqual("Бежать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
 
-        res = lion("Охотник", "Голодный")
-        self.assertEqual("Бежать", res.action, "False")
-        self.assertEqual("Голодный", res.condition, "False")
+    def test_satisfied_hunt(self):
+        res = Lion("Охотник", "Сытый")
+        res.launch()
+        self.assertEqual("Бежать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
 
-        res = lion("Охотник", "Сытый")
-        self.assertEqual("Бежать", res.action, "False")
-        self.assertEqual("Голодный", res.condition, "False")
+    def test_hungry_antelope(self):
+        res = Lion("Антилопа", "Голодный")
+        res.launch()
+        self.assertEqual("Съесть", res.get_action(), "False")
+        self.assertEqual("Сытый", res.get_condition(), "False")
 
-        res.introduce_new_event("Охотник")
-        self.assertEqual("Бежать", res.action, "False")
-        self.assertEqual("Голодный", res.condition, "False")
-
-        res = lion("Антилопа", "Голодный")
-        self.assertEqual("Съесть", res.action, "False")
-        self.assertEqual("Сытый", res.condition, "False")
-
-        res.introduce_new_event("Антилопа")
-        self.assertEqual("Спать", res.action, "False")
-        self.assertEqual("Голодный", res.condition, "False")
-
-        res = lion("Антилопа", "Сытый")
-        self.assertEqual("Спать", res.action, "False")
-        self.assertEqual("Голодный", res.condition, "False")
-
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_satisfied_antelope(self):
+        res = Lion("Антилопа", "Сытый")
+        res.launch()
+        self.assertEqual("Спать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
