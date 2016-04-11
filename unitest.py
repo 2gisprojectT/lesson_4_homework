@@ -1,12 +1,13 @@
 import unittest
 
-from Main import Lion, EventException
+from Main import Lion, EventException, HungryException
 
 
 class LionUnitTest(unittest.TestCase):
+
     def test_lionIO(self):
-        self.assertRaises(ValueError, Lion, "Дерево", "randombred")
-        self.assertRaises(EventException, Lion, "randombred", "Сытый")
+        self.assertRaises(HungryException, Lion, "Дерево", "randombred")
+        self.assertRaises(EventException, Lion, "randomed", "Голодный")
 
     def test_hungry_tree(self):
         res = Lion("Дерево", "Голодный")
