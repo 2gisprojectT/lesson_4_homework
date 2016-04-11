@@ -17,7 +17,7 @@ class Lion(object):
             pass
         else:
             raise HungryException("Неверный параметр %s вместо Сытый/ Голодный" % self.__condition)
-        if self.__event == "Антилопа" or self.__event == "Охотник" or self.__event == "Охотник":
+        if self.__event == "Антилопа" or self.__event == "Охотник" or self.__event == "Дерево":
             pass
         else:
             raise EventException("Неверный параметр %s вместо Дерево/ Охотник/ Антилопа" % self.__event)
