@@ -1,40 +1,18 @@
 class Lion:
-    def __init__(self,state):
-        if state.lower() == "голодный" or state.lower() == "сытый":
+    def __init__(self, state):
+        self.states = ["сытый", "голодный"]
+        self.symbols = ["антилопа", "охотник", "дерево"]
+        self.trans_table_actions = [["спать", "съесть"], ["убежать", "убежать"], ["смотреть", "спать"]]
+        self.trans_table_states = [["голодный", "сытый"], ["голодный", "голодный"], ["голодный", "голодный"]]
+        if state.lower() in self.states:
             self.state = state.lower()
         else:
-            self.state = None
+            raise ValueError("Неверное внутреннее состояние ", state)
 
     def transition(self, symbol):
         symbol = symbol.lower()
-        if symbol == "антилопа":
-            self.__antelope()
-        elif symbol == "охотник":
-            self.__hunter()
-        elif symbol == "дерево":
-            self.__tree()
+        if symbol in self.symbols:
+            self.action = self.trans_table_actions[self.symbols.index(symbol)][self.states.index(self.state)]
+            self.state = self.trans_table_states[self.symbols.index(symbol)][self.states.index(self.state)]
         else:
-            return "Неверный входной символ"
-
-    def __antelope(self):
-        if self.state == "голодный":
-            self.state = "сытый"
-            self.action = "съесть"
-        elif self.state == "сытый":
-            self.state = "голодный"
-            self.action = "спать"
-
-    def __hunter(self):
-        if self.state == "голодный":
-            self.action = "убежать"
-        elif self.state == "сытый":
-            self.state = "голодный"
-            self.action = "убежать"
-
-    def __tree(self):
-        if self.state == "голодный":
-            self.state = "голодный"
-            self.action = "спать"
-        elif self.state == "сытый":
-            self.state = "голодный"
-            self.action = "смотреть"
+            raise ValueError("Неверный входной символ ", symbol)

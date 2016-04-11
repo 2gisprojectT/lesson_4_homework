@@ -4,63 +4,60 @@ import unittest
 
 
 class LionUnittest(TestCase):
-    def test_new_full(self):
+    def test_init_full(self):
         lion = Lion("голодный")
         self.assertEqual("голодный", lion.state)
 
-    def test_new_hungry(self):
+    def test_init_hungry(self):
         lion = Lion("сытый")
         self.assertEqual("сытый", lion.state)
 
-    def test_new_negative(self):
-        lion = Lion("уставший")
-        self.assertIsNone(lion.state)
+    def test_init_negative(self):
+        self.assertRaises(ValueError, Lion, "уставший")
 
     def test_transition_hungry_antelope(self):
         lion = Lion("голодный")
         lion.transition("антилопа")
-        self.assertEqual("съесть", lion.action, "ошибка действия")
-        self.assertEqual("сытый", lion.state, "ошибка состояния")
+        self.assertEqual("съесть", lion.action)
+        self.assertEqual("сытый", lion.state)
 
     def test_transition_full_antelope(self):
         lion = Lion("сытый")
         lion.transition("антилопа")
-        self.assertEqual("спать", lion.action, "ошибка действия")
-        self.assertEqual("голодный", lion.state, "ошибка состояния")
+        self.assertEqual("спать", lion.action)
+        self.assertEqual("голодный", lion.state)
 
     def test_transition_hungry_hunter(self):
         lion = Lion("голодный")
         lion.transition("охотник")
-        self.assertEqual("убежать", lion.action, "ошибка действия")
-        self.assertEqual("голодный", lion.state, "ошибка состояния")
+        self.assertEqual("убежать", lion.action)
+        self.assertEqual("голодный", lion.state)
 
     def test_transition_full_hunter(self):
         lion = Lion("сытый")
         lion.transition("охотник")
-        self.assertEqual("убежать", lion.action, "ошибка действия")
-        self.assertEqual("голодный", lion.state, "ошибка состояния")
+        self.assertEqual("убежать", lion.action)
+        self.assertEqual("голодный", lion.state)
 
     def test_transition_hungry_tree(self):
         lion = Lion("голодный")
         lion.transition("дерево")
-        self.assertEqual("спать", lion.action, "ошибка действия")
-        self.assertEqual("голодный", lion.state, "ошибка состояния")
+        self.assertEqual("спать", lion.action)
+        self.assertEqual("голодный", lion.state)
 
     def test_transition_full_tree(self):
         lion = Lion("сытый")
         lion.transition("дерево")
-        self.assertEqual("смотреть", lion.action, "ошибка действия")
-        self.assertEqual("голодный", lion.state, "ошибка состояния")
+        self.assertEqual("смотреть", lion.action)
+        self.assertEqual("голодный", lion.state)
 
     def test_transition_hungry_negative(self):
         lion = Lion("голодный")
-        self.assertEqual("Неверный входной символ", lion.transition("НЛО"), "ошибка действия")
-        self.assertEqual("голодный", lion.state, "ошибка состояния")
+        self.assertRaises(ValueError, lion.transition, "НЛО")
 
     def test_transition_full_negative(self):
         lion = Lion("сытый")
-        self.assertEqual("Неверный входной символ", lion.transition("НЛО"), "ошибка действия")
-        self.assertEqual("сытый", lion.state, "ошибка состояния")
+        self.assertRaises(ValueError, lion.transition, "НЛО")
 
 
 if __name__ == '__main__':
