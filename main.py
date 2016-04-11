@@ -23,3 +23,6 @@ class Lion:
             else:
                 self.action = "смотреть"
                 self.state = "голодный"
+        else:
+            self.action = "убежать"
+            self.state = "голодный"
