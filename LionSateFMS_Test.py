@@ -24,19 +24,19 @@ class LionSateFMSTest(TestCase):
         for obj in state_list[states[0]]:
             lion = LionStateFSM(states[0])
             lion.fsm_realisation(obj)
-            self.assertEqual(lion.state_list[states[0]][obj][0], lion.action,
-                             "Ошибка! Должен быть " + lion.state_list[states[0]][obj][0])
-            self.assertEqual(lion.state_list[states[0]][obj][1], lion.state,
-                             "Ошибка! Должен быть " + lion.state_list[states[0]][obj][1])
+            self.assertEqual(lion.state_list[states[0]][obj]['action'], lion.action,
+                             "Ошибка! Должен быть " + lion.state_list[states[0]][obj]['action'])
+            self.assertEqual(lion.state_list[states[0]][obj]['state'], lion.state,
+                             "Ошибка! Должен быть " + lion.state_list[states[0]][obj]['state'])
 
     def test_init_obj_at_hungry_lion(self):
         for obj in state_list[states[1]]:
             lion = LionStateFSM(states[1])
             lion.fsm_realisation(obj)
-            self.assertEqual(lion.state_list[states[1]][obj][0], lion.action,
-                             "Ошибка! Должен быть " + lion.state_list[states[0]][obj][0])
-            self.assertEqual(lion.state_list[states[1]][obj][1], lion.state,
-                             "Ошибка! Должен быть " + lion.state_list[states[0]][obj][1])
+            self.assertEqual(lion.state_list[states[1]][obj]['action'], lion.action,
+                             "Ошибка! Должен быть " + lion.state_list[states[0]][obj]['action'])
+            self.assertEqual(lion.state_list[states[1]][obj]['state'], lion.state,
+                             "Ошибка! Должен быть " + lion.state_list[states[0]][obj]['state'])
 
     def test_init_bad_obj(self):
         lion = LionStateFSM(states[1])
