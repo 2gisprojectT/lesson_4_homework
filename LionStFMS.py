@@ -17,10 +17,9 @@ class LionStateFSM:
                                         objects[2]: [actions[1], states[1]]
                                     }
                         }
-        if state in self.state_list:
-            self.state = state
-        else:
+        if state not in self.state_list:
             raise ValueError("Нет такого состояния: ", state)
+        self.state = state
         self.action = ""
 
     def fsm_realisation(self, obj):
