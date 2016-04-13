@@ -1,30 +1,18 @@
-from enum import Enum
-
-
 class Lion:
-    def __init__(self,state):
-        if state.upper()=="ГОЛОДНЫЙ":
-            self.state="ГОЛОДНЫЙ";
+    def __init__(self, state):
+        if state.upper() == "ГОЛОДНЫЙ":
+            self.state = "ГОЛОДНЫЙ"
         else:
-            self.state="СЫТЫЙ";
-    def input(self,obj):
-        if self.state=="СЫТЫЙ":
-            if obj.upper()=="АНТИЛОПА":
-                self.action="Спать";
-            elif obj.upper()=="ОХОТНИК":
-                self.action="Убежать";
-            elif obj.upper()=="ДЕРЕВО":
-                self.action="Смотреть";
-            else:
-                return "Неверный символ";
-            self.state="ГОЛОДНЫЙ";
-        elif self.state=="ГОЛОДНЫЙ":
-            if obj.upper()=="АНТИЛОПА":
-                self.action="Съесть";
-                self.state="СЫТЫЙ";
-            elif obj.upper()=="ОХОТНИК":
-                self.action="Убежать";
-            elif obj.upper()=="ДЕРЕВО":
-                self.action="Спать";
-            else:
-                return "Неверный символ";
+            self.state = "СЫТЫЙ"
+        self.__table = {("АНТИЛОПА", "СЫТЫЙ"): ("ГОЛОДНЫЙ", "Спать"), ("АНТИЛОПА", "ГОЛОДНЫЙ"): ("СЫТЫЙ", "Съесть"),
+                        ("ОХОТНИК", "СЫТЫЙ"): ("ГОЛОДНЫЙ", "Убежать"), ("ОХОТНИК", "ГОЛОДНЫЙ"): ("ГОЛОДНЫЙ", "Убежать"),
+                        ("ДЕРЕВО", "СЫТЫЙ"): ("ГОЛОДНЫЙ", "Смотреть"), ("ДЕРЕВО", "ГОЛОДНЫЙ"): ("ГОЛОДНЫЙ", "Спать")}
+        self.action = None
+
+    def input(self, obj):
+        transition = self.__table.get((obj.upper(), self.state))
+        if transition is not None:
+            self.action = transition[1]
+            self.state = transition[0]
+        else:
+            return "Неверный символ"
