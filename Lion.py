@@ -4,9 +4,11 @@ class Lion:
         self.symbols = ["антилопа", "охотник", "дерево"]
         self.trans_table_actions = [["спать", "съесть"], ["убежать", "убежать"], ["смотреть", "спать"]]
         self.trans_table_states = [["голодный", "сытый"], ["голодный", "голодный"], ["голодный", "голодный"]]
+        self.action = ""
         if state.lower() in self.states:
             self.state = state.lower()
         else:
+            self.state = self.states[0]
             raise ValueError("Неверное внутреннее состояние ", state)
 
     def transition(self, symbol):
