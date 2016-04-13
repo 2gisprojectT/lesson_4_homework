@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/2gisprojectT/lesson_4_homework.svg?branch=master)](https://travis-ci.org/2gisprojectT/lesson_4_homework)
+
 # ProjectT spring-2016 - Домашнее задание #4
 ## Задание
 - Пусть дан следующий конечный автомат состояний льва. Входные символы: `антилопа`, `охотник`, `дерево`. Внутренние состояния: `сытый`, `голодный`. Действия автомата: `съесть`, `спать`, `убежать`, `смотреть`. Таблица переходов:
