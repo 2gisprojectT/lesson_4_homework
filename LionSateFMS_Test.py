@@ -3,10 +3,10 @@ from LionStFMS import LionStateFSM
 import unittest
 
 lion_state_list = {
-                'сытый': {
-                    'антилопа': {'action': 'спать', 'new_state': 'голодный'}
-                }
-            }
+                    'сытый': {
+                        'антилопа': {'action': 'спать', 'new_state': 'голодный'}
+                    }
+                  }
 
 
 class LionSateFMSTest(TestCase):
@@ -27,9 +27,8 @@ class LionSateFMSTest(TestCase):
                              "Ошибка! Должен быть " + lion.state_list['сытый']['антилопа']['new_state'])
 
     def test_init_bad_obj(self):
-        lion = LionStateFSM('голодный', lion_state_list)
+        lion = LionStateFSM('сытый', lion_state_list)
         self.assertRaises(ValueError, lion.fsm_realisation, "обезьяна")
 
 if __name__ == '__main__':
     unittest.main()
-    
