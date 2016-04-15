@@ -2,31 +2,39 @@ from unittest import TestCase
 from LionStFMS import LionStateFSM
 import unittest
 
-state_list = {
-                'сытый': {'антилопа': 'антилопа', 'охотник': 'охотник', 'дерево': 'дерево'},
-                'голодный': {'антилопа': 'антилопа', 'охотник': 'охотник', 'дерево': 'дерево'}
+lion_state_list = {
+                'сытый': {
+                    'антилопа': {'action': 'спать', 'new_state': 'голодный'},
+                    'охотник': {'action': 'убежать', 'new_state': 'голодный'},
+                    'дерево': {'action': 'смотреть', 'new_state': 'голодный'}
+                },
+                'голодный': {
+                    'антилопа': {'action': 'съесть', 'new_state': 'голодный'},
+                    'охотник': {'action': 'убежать', 'new_state': 'голодный'},
+                    'дерево': {'action': 'спать', 'new_state': 'голодный'}
+                }
             }
 
 
 class LionSateFMSTest(TestCase):
 
     def test_good_init_state(self):
-            lion = LionStateFSM('сытый')
+            lion = LionStateFSM('сытый', lion_state_list)
             self.assertEqual('сытый', lion.state, "Ошибка! Должен быть " + 'сытый')
 
     def test_bad_init_state(self):
-        self.assertRaises(ValueError, LionStateFSM, "сонный")
+        self.assertRaises(ValueError, LionStateFSM, "сонный", lion_state_list)
 
     def test_init_good_obj(self):
-            lion = LionStateFSM('сытый')
-            lion.fsm_realisation(state_list['сытый']['антилопа'])
+            lion = LionStateFSM('сытый', lion_state_list)
+            lion.fsm_realisation('антилопа')
             self.assertEqual(lion.state_list['сытый']['антилопа']['action'], lion.action,
                              "Ошибка! Должен быть " + lion.state_list['сытый']['антилопа']['action'])
             self.assertEqual(lion.state_list['сытый']['антилопа']['new_state'], lion.state,
                              "Ошибка! Должен быть " + lion.state_list['сытый']['антилопа']['new_state'])
 
     def test_init_bad_obj(self):
-        lion = LionStateFSM('голодный')
+        lion = LionStateFSM('голодный', lion_state_list)
         self.assertRaises(ValueError, lion.fsm_realisation, "обезьяна")
 
 if __name__ == '__main__':
