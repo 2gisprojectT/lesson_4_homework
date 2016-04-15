@@ -1,20 +1,15 @@
-states = ['сытый', 'голодный']
-objects = ['антилопа', 'охотник', 'дерево']
-actions = ['съесть', 'спать', 'убежать', 'смотреть']
-
-
 class LionStateFSM:
     def __init__(self, state):
         self.state_list = {
-                            states[0]: {
-                                        objects[0]: {'action': actions[1], 'state': states[1]},
-                                        objects[1]: {'action': actions[2], 'state': states[1]},
-                                        objects[2]: {'action': actions[3], 'state': states[1]}
+                            'сытый': {
+                                        'антилопа': {'action': 'спать', 'new_state': 'голодный'},
+                                        'охотник': {'action': 'убежать', 'new_state': 'голодный'},
+                                        'дерево': {'action': 'смотреть', 'new_state': 'голодный'}
                                        },
-                            states[1]: {
-                                        objects[0]: {'action': actions[0], 'state': states[0]},
-                                        objects[1]: {'action': actions[2], 'state': states[1]},
-                                        objects[2]: {'action': actions[1], 'state': states[1]}
+                            'голодный': {
+                                        'антилопа': {'action': 'съесть', 'new_state': 'голодный'},
+                                        'охотник': {'action': 'убежать', 'new_state': 'голодный'},
+                                        'дерево': {'action': 'спать', 'new_state': 'голодный'}
                                     }
                         }
         if state not in self.state_list:
@@ -26,4 +21,4 @@ class LionStateFSM:
         if obj not in self.state_list[self.state]:
             raise ValueError("Вы ввели не верный объект! Нет такой комбинации состояние + объект")
         self.action = self.state_list[self.state][obj]['action']
-        self.state = self.state_list[self.state][obj]['state']
+        self.state = self.state_list[self.state][obj]['new_state']
