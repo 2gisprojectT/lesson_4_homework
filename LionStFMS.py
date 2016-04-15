@@ -2,9 +2,9 @@
 
 class LionStateFSM:
     def __init__(self, state, state_list):
-        self.state_list = state_list
-        if state not in self.state_list:
+        if state not in state_list:
             raise ValueError("Нет такого состояния: ", state)
+        self.state_list = state_list
         self.state = state
         self.action = ""
 
