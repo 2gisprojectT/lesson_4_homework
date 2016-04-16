@@ -18,9 +18,7 @@ class Lion(object):
 
     def __check_event(self):
 
-        if self.__event == "Антилопа" or self.__event == "Охотник" or self.__event == "Дерево":
-            pass
-        else:
+        if self.__event != "Антилопа" and self.__event != "Охотник" and self.__event != "Дерево":
             raise EventException("Неверный параметр %s вместо Дерево/ Охотник/ Антилопа" % self.__event)
 
     def add_event(self, event):
