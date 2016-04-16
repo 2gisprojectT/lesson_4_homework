@@ -8,15 +8,16 @@ class HungryException(Exception):
 
 class Lion(object):
     def __init__(self, event, condition):
-        self.__condition = condition
-        self.__event = event
-        self.__check_constructor()
-
-    def __check_constructor(self):
-        if self.__condition == "Голодный" or self.__condition == "Сытый":
-            pass
+        if condition == "Голодный" or condition == "Сытый":
+            self.__condition = condition
+            self.__event = event
+            self.__check_event()
         else:
-            raise HungryException("Неверный параметр %s вместо Сытый/ Голодный" % self.__condition)
+            raise HungryException("Неверный параметр %s вместо Сытый/ Голодный" % condition)
+
+
+    def __check_event(self):
+
         if self.__event == "Антилопа" or self.__event == "Охотник" or self.__event == "Дерево":
             pass
         else:
@@ -24,11 +25,12 @@ class Lion(object):
 
     def add_event(self, event):
         self.__event = event
+        self.__check_event()
 
     def launch(self):
         if self.__condition == "Голодный":
             self.__hungry()
-        elif self.__condition == "Сытый":
+        else:
             self.__not_hungry()
 
     def __hungry(self):
