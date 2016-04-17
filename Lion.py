@@ -1,20 +1,13 @@
 class Lion:
-    def __init__(self, state):
-        self.states = ["сытый", "голодный"]
-        self.symbols = ["антилопа", "охотник", "дерево"]
-        self.trans_table_actions = [["спать", "съесть"], ["убежать", "убежать"], ["смотреть", "спать"]]
-        self.trans_table_states = [["голодный", "сытый"], ["голодный", "голодный"], ["голодный", "голодный"]]
+    def __init__(self, state, trans_table):
+        if state.lower() not in trans_table:
+            raise ValueError("Неверное внутреннее состояние ", state.lower())
+        self.state = state.lower()
+        self.trans_table = trans_table
         self.action = ""
-        if state.lower() in self.states:
-            self.state = state.lower()
-        else:
-            self.state = self.states[0]
-            raise ValueError("Неверное внутреннее состояние ", state)
 
     def transition(self, symbol):
-        symbol = symbol.lower()
-        if symbol in self.symbols:
-            self.action = self.trans_table_actions[self.symbols.index(symbol)][self.states.index(self.state)]
-            self.state = self.trans_table_states[self.symbols.index(symbol)][self.states.index(self.state)]
-        else:
-            raise ValueError("Неверный входной символ ", symbol)
+        if symbol.lower() not in self.trans_table[self.state]:
+            raise ValueError("Неверный входной символ ", symbol.lower())
+        self.action = self.trans_table[self.state][symbol]['action']
+        self.state = self.trans_table[self.state][symbol]['state']
