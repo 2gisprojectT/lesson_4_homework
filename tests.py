@@ -25,9 +25,7 @@ class LionTests(TestCase):
 
     def test_unknown_obj(self):
         lion = Lion("голодный")
-        lion.behaving("вфвфв")
-        self.assertEqual(lion.action, "")
-        self.assertEqual(lion.state, "голодный")
+        self.assertRaises(ValueError, lion.behaving, "вфвфв")
 
     def test_tree_antelope(self):
        lion = Lion("голодный")
