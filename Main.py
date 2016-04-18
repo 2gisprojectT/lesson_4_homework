@@ -10,10 +10,9 @@ class Lion(object):
     def __init__(self, event, condition):
         if condition != "Голодный" and condition != "Сытый":
             raise HungryException("Неверный параметр %s вместо Сытый/ Голодный" % condition)
-        else:
-            self.__check_event(event)
-            self.__condition = condition
-            self.__event = event
+        self.__check_event(event)
+        self.__condition = condition
+        self.__event = event
 
     def __check_event(self, event):
         if event != "Антилопа" and event != "Охотник" and event != "Дерево":
