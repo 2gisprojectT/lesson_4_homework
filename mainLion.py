@@ -1,41 +1,39 @@
 class Lion :
-    def __init__(self, x, y) :
-        self.state = x
+    def __init__(self, state) :
+        if state == "full" or state == "hungry" :
+            self.state = state
+        else:
+            raise ValueError("Incorrect state")
         self.action = ""
-        self.read_and_go(y)
 
-    def antelope (self) :
-        if (self.state == 1) :
+    def __antelope (self) :
+        if (self.state == "full") :
             self.action ="sleep"
-            self.state = 0
+            self.state = "hungry"
         else:
             self.action ="eat"
-            self.state = 1
+            self.state = "full"
 
-    def hunter (self) :
-        if (self.state == 1) :
+    def __hunter (self) :
+        if (self.state == "full") :
             self.action ="run"
-            self.state = 0
+            self.state = "hungry"
         else:
             self.action ="run"
 
-    def tree (self) :
-        if (self.state == 1) :
+    def __tree (self) :
+        if (self.state == "full") :
             self.action ="look"
-            self.state = 0
+            self.state = "hungry"
         else:
             self.action ="sleep"
 
-    def other (self) :
-        self.action = "error"
-
-    def read_and_go (self, y) :
-        word = y
-        if word == "antelope" :
-            self.antelope()
-        elif word == "hunter" :
-            self.hunter()
-        elif word == "tree" :
-            self.tree()
+    def implementation (self, object) :
+        if object == "antelope" :
+            self.__antelope()
+        elif object ==  "hunter" :
+            self.__hunter()
+        elif object == "tree" :
+            self.__tree()
         else :
-            self.other()
+            raise ValueError("Incorrect object")
