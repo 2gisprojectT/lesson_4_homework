@@ -52,4 +52,4 @@ class LionUnitTest(unittest.TestCase):
 
     def run_add_mehod(self, res):
         with self.assertRaises(EventException):
-            res.add_event("qwdas")
+            res.add_event("randomed")
