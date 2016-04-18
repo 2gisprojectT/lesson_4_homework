@@ -23,3 +23,5 @@ class Lion:
             else:
                 self.action = "смотреть"
                 self.state = "голодный"
+        else:
+            raise ValueError("нераспознанный объект")
