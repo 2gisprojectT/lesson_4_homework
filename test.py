@@ -39,11 +39,11 @@ class LionTest (TestCase) :
         self.assertEqual("hungry", fsm_lion.state, "wrong state")
         self.assertEqual("sleep", fsm_lion.action, "wrong action")
 
-    def test_full (self) :
+    def test_create_state_full (self) :
         fsm_lion = Lion("full")
         self.assertEqual("full", fsm_lion.state, "wrong state")
 
-    def test_hungry (self) :
+    def test_create_state_hungry (self) :
         fsm_lion = Lion("hungry")
         self.assertEqual("hungry", fsm_lion.state, "wrong state")
 
@@ -57,7 +57,6 @@ class LionTest (TestCase) :
 
     def test_incorrect_arguments (self) :
         self.assertRaises(ValueError, Lion, "happy")
-        self.assertRaises(ValueError, Lion, "melancholy")
 
     if __name__ == '__main__' :
         unittest.main()
