@@ -3,39 +3,61 @@ from unittest import TestCase
 import unittest
 
 class LionTest (TestCase) :
-    def test_init (self) :
-        res = Lion(1, "hunter")
-        self.assertEqual(0, res.state, "wrong")
-   #     self.assertEqual(1, res.state, "wrong")
-        self.assertEqual("run", res.action, "wrong")
+    def test_full_antelope (self) :
+        fsm_lion = Lion("full")
+        fsm_lion.implementation("antelope")
+        self.assertEqual("hungry", fsm_lion.state, "wrong state")
+        self.assertEqual("sleep", fsm_lion.action, "wrong action")
 
-        res = Lion(1, "antelope")
-        self.assertEqual(0, res.state, "wrong")
-        self.assertEqual("sleep", res.action, "wrong")
+    def test_full_hunter (self) :
+        fsm_lion = Lion("full")
+        fsm_lion.implementation("hunter")
+        self.assertEqual("hungry", fsm_lion.state, "wrong state")
+        self.assertEqual("run", fsm_lion.action, "wrong action")
 
-        res = Lion(1, "tree")
-        self.assertEqual(0, res.state, "wrong")
-        self.assertEqual("look", res.action, "wrong")
+    def test_full_tree (self) :
+        fsm_lion = Lion("full")
+        fsm_lion.implementation("tree")
+        self.assertEqual("hungry", fsm_lion.state, "wrong state")
+        self.assertEqual("look", fsm_lion.action, "wrong action")
 
-        res = Lion(1, "rabbit")
-        self.assertEqual(1, res.state, "wrong")
-        self.assertEqual("error", res.action, "wrong")
+    def test_hungry_antelope (self) :
+        fsm_lion = Lion("hungry")
+        fsm_lion.implementation("antelope")
+        self.assertEqual("full", fsm_lion.state, "wrong state")
+        self.assertEqual("eat", fsm_lion.action, "wrong action")
 
-        res = Lion(0, "hunter")
-        self.assertEqual(0, res.state, "wrong")
-        self.assertEqual("run", res.action, "wrong")
+    def test_hungry_hunter (self) :
+        fsm_lion = Lion("hungry")
+        fsm_lion.implementation("hunter")
+        self.assertEqual("hungry", fsm_lion.state, "wrong state")
+        self.assertEqual("run", fsm_lion.action, "wrong action")
 
-        res = Lion(0, "antelope")
-        self.assertEqual(1, res.state, "wrong")
-        self.assertEqual("eat", res.action, "wrong")
+    def test_hungry_tree (self) :
+        fsm_lion = Lion("hungry")
+        fsm_lion.implementation("tree")
+        self.assertEqual("hungry", fsm_lion.state, "wrong state")
+        self.assertEqual("sleep", fsm_lion.action, "wrong action")
 
-        res = Lion(0, "tree")
-        self.assertEqual(0, res.state, "wrong")
-        self.assertEqual("sleep", res.action, "wrong")
+    def test_full (self) :
+        fsm_lion = Lion("full")
+        self.assertEqual("full", fsm_lion.state, "wrong state")
 
-        res = Lion(0, "rabbit")
-        self.assertEqual(0, res.state, "wrong")
-        self.assertEqual("error", res.action, "wrong")
+    def test_hungry (self) :
+        fsm_lion = Lion("hungry")
+        self.assertEqual("hungry", fsm_lion.state, "wrong state")
+
+    def test_incorrect_state_full (self) :
+        fsm_lion = Lion("full")
+        self.assertRaises(ValueError, fsm_lion.implementation, "rabbit")
+
+    def test_incorrect_state_hungry (self) :
+        fsm_lion = Lion("hungry")
+        self.assertRaises(ValueError, fsm_lion.implementation, "cow")
+
+    def test_incorrect_arguments (self) :
+        self.assertRaises(ValueError, Lion, "happy")
+        self.assertRaises(ValueError, Lion, "melancholy")
 
     if __name__ == '__main__' :
         unittest.main()
