@@ -27,33 +27,30 @@ class LionTests(TestCase):
         lion = Lion("голодный")
         self.assertRaises(ValueError, lion.behaving, "вфвфв")
 
-    def test_tree_antelope(self):
+    def test_antelope_hungry(self):
        lion = Lion("голодный")
-       lion.behaving("дерево")
        lion.behaving("антилопа")
        self.assertEqual(lion.action, "съесть")
        self.assertEqual(lion.state, "сытый")
 
-    def test_hunter(self):
+    def test_antelope_full(self):
         lion = Lion("сытый")
-        lion.behaving("охотник")
-        self.assertEqual(lion.action, "убежать")
-        self.assertEqual(lion.state, "голодный")
-
-    def test_tree_hunter(self):
-        lion = Lion("сытый")
-        lion.behaving("дерево")
-        lion.behaving("охотник")
-        self.assertEqual(lion.action, "убежать")
-        self.assertEqual(lion.state, "голодный")
-
-    def test_tree_antelope_hunter(self):
-        lion = Lion("сытый")
-        lion.behaving("дерево")
         lion.behaving("антилопа")
+        self.assertEqual(lion.action, "спать")
+        self.assertEqual(lion.state, "голодный")
+
+    def test_hunter_full(self):
+        lion = Lion("сытый")
         lion.behaving("охотник")
         self.assertEqual(lion.action, "убежать")
         self.assertEqual(lion.state, "голодный")
+
+    def test_hunter_hungry(self):
+        lion = Lion("голодный")
+        lion.behaving("охотник")
+        self.assertEqual(lion.action, "убежать")
+        self.assertEqual(lion.state, "голодный")
+
 
 if __name__ == '__main__':
     unittest.main()
