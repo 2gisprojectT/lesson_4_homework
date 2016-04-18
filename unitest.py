@@ -64,8 +64,8 @@ class LionUnitTest(unittest.TestCase):
         self.assertEqual("Съесть", res.get_action(), "False")
         self.assertEqual("Сытый", res.get_condition(), "False")
 
-    def test_satisfied_hunt_add_event(self):
-        res = Lion("Охотник", "Сытый")
+    def test_satisfied_antelope_add_event(self):
+        res = Lion("Антилопа", "Сытый")
         res.launch()
         res.add_event("Дерево")
         res.launch()
