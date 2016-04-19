@@ -44,19 +44,47 @@ class LionUnitTest(unittest.TestCase):
         self.assertEqual("Спать", res.get_action(), "False")
         self.assertEqual("Голодный", res.get_condition(), "False")
 
-    def test_hungry_tree_add_event(self):
+    def test_hungry_tree_add_event_tree(self):
         res = Lion("Дерево", "Голодный")
         res.launch()
         res.add_event("Дерево")
         res.launch()
         self.assertEqual("Спать", res.get_action(), "False")
         self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_hungry_tree_add_event_hunt(self):
         res = Lion("Дерево", "Голодный")
         res.launch()
         res.add_event("Охотник")
         res.launch()
         self.assertEqual("Бежать", res.get_action(), "False")
         self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_hungry_tree_add_event_antilope(self):
+        res = Lion("Дерево", "Голодный")
+        res.launch()
+        res.add_event("Охотник")
+        res.launch()
+        self.assertEqual("Бежать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_satisfied_tree_add_event_tree(self):
+        res = Lion("Дерево", "Голодный")
+        res.launch()
+        res.add_event("Дерево")
+        res.launch()
+        self.assertEqual("Спать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_satisfied_tree_add_event_hunt(self):
+        res = Lion("Дерево", "Голодный")
+        res.launch()
+        res.add_event("Охотник")
+        res.launch()
+        self.assertEqual("Бежать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_satisfied_tree_add_event_antilope(self):
         res = Lion("Дерево", "Голодный")
         res.launch()
         res.add_event("Антилопа")
@@ -64,22 +92,106 @@ class LionUnitTest(unittest.TestCase):
         self.assertEqual("Съесть", res.get_action(), "False")
         self.assertEqual("Сытый", res.get_condition(), "False")
 
-    def test_satisfied_antelope_add_event(self):
+    def test_hungry_hunt_add_event_tree(self):
+        res = Lion("Охотник", "Голодный")
+        res.launch()
+        res.add_event("Дерево")
+        res.launch()
+        self.assertEqual("Спать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_hungry_hunt_add_event_hunt(self):
+        res = Lion("Охотник", "Голодный")
+        res.launch()
+        res.add_event("Охотник")
+        res.launch()
+        self.assertEqual("Бежать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_hungry_hunt_add_event_antilope(self):
+        res = Lion("Охотник", "Голодный")
+        res.launch()
+        res.add_event("Антилопа")
+        res.launch()
+        self.assertEqual("Съесть", res.get_action(), "False")
+        self.assertEqual("Сытый", res.get_condition(), "False")
+
+    def test_satisfied_hunt_add_event_tree(self):
+        res = Lion("Охотник", "Сытый")
+        res.launch()
+        res.add_event("Дерево")
+        res.launch()
+        self.assertEqual("Спать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_satisfied_hunt_add_event_hunt(self):
+        res = Lion("Охотник", "Сытый")
+        res.launch()
+        res.add_event("Охотник")
+        res.launch()
+        self.assertEqual("Бежать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_satisfied_hunt_add_event_antilope(self):
+        res = Lion("Охотник", "Сытый")
+        res.launch()
+        res.add_event("Антилопа")
+        res.launch()
+        self.assertEqual("Съесть", res.get_action(), "False")
+        self.assertEqual("Сытый", res.get_condition(), "False")
+
+    def test_satisfied_antilope_add_event_tree(self):
         res = Lion("Антилопа", "Сытый")
         res.launch()
         res.add_event("Дерево")
         res.launch()
         self.assertEqual("Спать", res.get_action(), "False")
         self.assertEqual("Голодный", res.get_condition(), "False")
-        res = Lion("Дерево", "Сытый")
+
+    def test_satisfied_antilope_add_event_hunt(self):
+        res = Lion("Антилопа", "Сытый")
         res.launch()
         res.add_event("Охотник")
         res.launch()
         self.assertEqual("Бежать", res.get_action(), "False")
         self.assertEqual("Голодный", res.get_condition(), "False")
-        res = Lion("Дерево", "Голодный")
+
+    def test_satisfied_antilope_add_event_antilope(self):
+        res = Lion("Антилопа", "Сытый")
         res.launch()
         res.add_event("Антилопа")
         res.launch()
         self.assertEqual("Съесть", res.get_action(), "False")
         self.assertEqual("Сытый", res.get_condition(), "False")
+
+    def test_satisfied_antilope_add_event_tree(self):
+        res = Lion("Антилопа", "Сытый")
+        res.launch()
+        res.add_event("Дерево")
+        res.launch()
+        self.assertEqual("Спать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_hungry_antilope_add_event_tree(self):
+        res = Lion("Антилопа", "Голодный")
+        res.launch()
+        res.add_event("Дерево")
+        res.launch()
+        self.assertEqual("Смотреть", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_hungry_antilope_add_event_hunt(self):
+        res = Lion("Антилопа", "Голодный")
+        res.launch()
+        res.add_event("Охотник")
+        res.launch()
+        self.assertEqual("Бежать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
+
+    def test_hungry_antilope_add_event_antilope(self):
+        res = Lion("Антилопа", "Голодный")
+        res.launch()
+        res.add_event("Антилопа")
+        res.launch()
+        self.assertEqual("Спать", res.get_action(), "False")
+        self.assertEqual("Голодный", res.get_condition(), "False")
