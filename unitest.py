@@ -164,14 +164,6 @@ class LionUnitTest(unittest.TestCase):
         self.assertEqual("Съесть", res.get_action(), "False")
         self.assertEqual("Сытый", res.get_condition(), "False")
 
-    def test_satisfied_antilope_add_event_tree(self):
-        res = Lion("Антилопа", "Сытый")
-        res.launch()
-        res.add_event("Дерево")
-        res.launch()
-        self.assertEqual("Спать", res.get_action(), "False")
-        self.assertEqual("Голодный", res.get_condition(), "False")
-
     def test_hungry_antilope_add_event_tree(self):
         res = Lion("Антилопа", "Голодный")
         res.launch()
