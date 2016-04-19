@@ -29,7 +29,7 @@ class LionSateFMSTest(TestCase):
         self.assertRaises(ValueError, LionStateFSM, state_list_wrapper['bad_state'], lion_state_list)
 
     def test_empty_data(self):
-        self.assertRaises(ValueError, LionStateFSM, state_list_wrapper[None], None)
+        self.assertRaises(ValueError, LionStateFSM, None, None)
 
     def test_init_good_obj(self):
         lion = LionStateFSM(state_list_wrapper['state'], lion_state_list)
