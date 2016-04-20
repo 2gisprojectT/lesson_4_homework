@@ -23,6 +23,7 @@ class LionSateFMSTest(TestCase):
     def test_good_init_state(self):
         lion = LionStateFSM(state_list_wrapper['state'], lion_state_list)
         self.assertEqual(state_list_wrapper['state'], lion.state)
+        self.assertEqual(lion_state_list, lion.state_list)
         self.assertEqual(None, lion.action)
 
     def test_bad_init_state(self):
