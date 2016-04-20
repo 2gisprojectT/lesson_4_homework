@@ -1,18 +1,20 @@
 class Lion:
-    def __init__(self, state):
-        if state.upper() == "ГОЛОДНЫЙ":
-            self.state = "ГОЛОДНЫЙ"
+    def __init__(self, state, table):
+        self._table = dict()
+        for cell in table:
+            self._table[(cell[0].upper(), cell[1].upper())] = (table[cell][0].upper(), table[cell][1])
+        states = {key[1] for key in self._table.keys()}
+        states = states.union({val[0] for val in self._table.values()})
+        if state.upper() in states:
+            self.state = state.upper()
         else:
-            self.state = "СЫТЫЙ"
-        self.__table = {("АНТИЛОПА", "СЫТЫЙ"): ("ГОЛОДНЫЙ", "Спать"), ("АНТИЛОПА", "ГОЛОДНЫЙ"): ("СЫТЫЙ", "Съесть"),
-                        ("ОХОТНИК", "СЫТЫЙ"): ("ГОЛОДНЫЙ", "Убежать"), ("ОХОТНИК", "ГОЛОДНЫЙ"): ("ГОЛОДНЫЙ", "Убежать"),
-                        ("ДЕРЕВО", "СЫТЫЙ"): ("ГОЛОДНЫЙ", "Смотреть"), ("ДЕРЕВО", "ГОЛОДНЫЙ"): ("ГОЛОДНЫЙ", "Спать")}
+            raise ValueError("Задаваемого состояния нет в таблице переходов: %s" % state)
         self.action = None
 
     def input(self, obj):
-        transition = self.__table.get((obj.upper(), self.state))
+        transition = self._table.get((obj.upper(), self.state))
         if transition is not None:
             self.action = transition[1]
             self.state = transition[0]
         else:
-            return "Неверный символ"
+            raise ValueError("Не верный входной символ: %s" % obj)
