@@ -10,11 +10,11 @@ lion_get = {"голодный":
 
 class LionFSM:
     def __init__(self, state):
-        if state == "голодный" or state == "сытый":
+        if state != "голодный" and state != "сытый":
+            raise ValueError("Состояние не определено")
+        else:
             self.action = ""
             self.state = state
-        else:
-            raise ValueError("Состояние не определено")
 
     def input(self, symbol):
         try:
