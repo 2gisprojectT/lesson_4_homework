@@ -17,9 +17,8 @@ class LionFSM:
             self.state = state
 
     def input(self, symbol):
-        try:
+        if symbol != "антилопа" and symbol != "охотник" and symbol != "дерево":
+            raise ValueError('Неверный событие')
+        else:
             self.action = lion_get[self.state][symbol]['действие']
             self.state = lion_get[self.state][symbol]['состояние']
-            return self
-        except KeyError:
-            return self
