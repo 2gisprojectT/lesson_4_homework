@@ -1,4 +1,4 @@
-﻿from unittest import TestCase
+from unittest import TestCase
 from object import Lion
 import unittest
 
@@ -56,6 +56,11 @@ class TestLion(TestCase):
         lion.work("приветики")
         self.assertEqual(lion.state, "голодный")
         self.assertEqual(lion.act, "смотреть")
+
+    def test_wrong_state(self):
+        lion = Lion("собака", "кошка")
+        self.assertEqual(lion.state, "сытый")
+        self.assertEqual(lion.act, "спать")
 
 if __name__ == '__main__':
     unittest.main()
