@@ -1,7 +1,13 @@
 class Lion:
     def __init__(self, state="сытый", act="спать"):
-        self.state = state
-        self.act = act
+	if state == "сытый" or state == "голодный":
+            self.state = state
+	else:
+	    self.state = "сытый"
+	if act == "спать" or act == "съесть" or act == "убежать":
+            self.act = act
+	else:
+	    self.act = "спать"
 
     def work(self, event):
         if event == "антилопа":
