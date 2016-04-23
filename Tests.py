@@ -5,15 +5,15 @@ import unittest
 
 class LionTest(TestCase):
     def setUp(self):
-        self.table = {("Антилопа", "Голодный"): ("Сытый", "Съесть"),
-                      ("Охотник", "Голодный"): ("Голодный", "Убежать")}
+        self.table = {"Голодный": {"Антилопа": ("Сытый", "Съесть"),
+                                  "Охотник": ("Голодный", "Убежать")}}
 
     def test_constructor_positive(self):
         lion = Lion("Голодный", self.table)
         self.assertEqual("Голодный", lion.state)
 
     def test_constructor_negative(self):
-        state = "sds"
+        state = "Дерево"
         regex = "Задаваемого состояния нет в таблице переходов: %s" % state
         self.assertRaisesRegex(ValueError, regex, Lion, state, self.table)
 
@@ -30,8 +30,8 @@ class LionTest(TestCase):
         self.assertEqual("Убежать", lion.action)
 
     def test_wrong_input_symbol(self):
-        lion = Lion("Сытый", self.table)
-        symbol = "sds"
+        lion = Lion("Голодный", self.table)
+        symbol = "Дерево"
         regex = "Не верный входной символ: %s" % symbol
         self.assertRaisesRegex(ValueError, regex, lion.input, symbol)
 
