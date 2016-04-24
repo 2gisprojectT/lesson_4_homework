@@ -4,18 +4,16 @@ import unittest
 
 lion_state_list = {
                      'сытый': {
-                         'антилопа': {'action': 'спать', 'new_state': 'голодный', 'bad_obj': 'обезьяна', 'bad_state': 'сонный'}
+                         'антилопа': {'action': 'спать', 'new_state': 'голодный'}
                      }
                    }
 
 state_list_wrapper = {
-                      'state': tuple(lion_state_list)[0],
-                      'object': tuple(lion_state_list[tuple(lion_state_list)[0]])[0],
-                      'action': lion_state_list[tuple(lion_state_list)[0]][tuple(lion_state_list[tuple(lion_state_list)[0]])[0]]['action'],
-                      'new_state': lion_state_list[tuple(lion_state_list)[0]][tuple(lion_state_list[tuple(lion_state_list)[0]])[0]]['new_state'],
-                      'bad_state': lion_state_list[tuple(lion_state_list)[0]][tuple(lion_state_list[tuple(lion_state_list)[0]])[0]]['bad_state'],
-                      'bad_obj': lion_state_list[tuple(lion_state_list)[0]][tuple(lion_state_list[tuple(lion_state_list)[0]])[0]]['bad_obj']
-                      }
+                      'state': list(lion_state_list.keys())[0],
+                      'object': list(lion_state_list[list(lion_state_list.keys())[0]].keys())[0],
+                      'bad_obj': 'обезьяна',
+                      'bad_state': 'сонный'
+                    }
 
 
 class LionSateFMSTest(TestCase):
@@ -35,8 +33,8 @@ class LionSateFMSTest(TestCase):
     def test_init_good_obj(self):
         lion = LionStateFSM(state_list_wrapper['state'], lion_state_list)
         lion.fsm_realisation(state_list_wrapper['object'])
-        self.assertEqual(state_list_wrapper['action'], lion.action)
-        self.assertEqual(state_list_wrapper['new_state'], lion.state)
+        self.assertEqual(lion_state_list[state_list_wrapper['state']][state_list_wrapper['object']]['action'], lion.action)
+        self.assertEqual(lion_state_list[state_list_wrapper['state']][state_list_wrapper['object']]['new_state'], lion.state)
 
     def test_init_bad_obj(self):
         lion = LionStateFSM(state_list_wrapper['state'], lion_state_list)
@@ -44,4 +42,3 @@ class LionSateFMSTest(TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    
