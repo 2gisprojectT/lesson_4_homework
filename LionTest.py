@@ -39,7 +39,7 @@ class LionUnittest(TestCase):
         self.assertEqual("убежать", lion.action)
 
         lion = Lion("голодный")
-        lion.act("деревоi")
+        lion.act("дерево")
         self.assertEqual("голодный", lion.state)
         self.assertEqual("спать", lion.action)
 
