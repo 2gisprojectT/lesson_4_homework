@@ -3,11 +3,11 @@ class Lion:
         if state == "сытый" or state == "голодный":
             self.state = state
         else:
-            self.state = "сытый"
-        if act == "спать" or act == "съесть" or act == "убежать":
+            raise Exception("Нет такого состояния")
+        if act == "съесть" or act == "убежать" or act == "смотреть" or act == "спать":
             self.act = act
         else:
-            self.act = "спать"
+            raise Exception("Нет такого действия")
 
     def work(self, event):
         if event == "антилопа":
@@ -30,8 +30,7 @@ class Lion:
             else:
                 self.act = "спать"
         else:
-            self.state = "голодный"
-            self.act = "смотреть"
+            raise Exception("Ерунда на входе")
 
     def __str__(self):
         return '%s, %s' % (self.act, self.state)

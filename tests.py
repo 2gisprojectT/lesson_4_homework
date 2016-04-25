@@ -47,20 +47,14 @@ class TestLion(TestCase):
 
     def test_full_unknown(self):
         lion = Lion("сытый")
-        lion.work("приветики")
-        self.assertEqual(lion.state, "голодный")
-        self.assertEqual(lion.act, "смотреть")
+        self.assertRaises(Exception, lion.work, "приветики")
 
     def test_hungry_unknown(self):
         lion = Lion("голодный")
-        lion.work("приветики")
-        self.assertEqual(lion.state, "голодный")
-        self.assertEqual(lion.act, "смотреть")
+        self.assertRaises(Exception, lion.work, "приветики")
 
     def test_wrong_state(self):
-        lion = Lion("собака", "кошка")
-        self.assertEqual(lion.state, "сытый")
-        self.assertEqual(lion.act, "спать")
+        self.assertRaises(Exception, Lion, "привет", "ики")
 
 if __name__ == '__main__':
     unittest.main()
