@@ -5,12 +5,12 @@ import unittest
 
 class LionTest(TestCase):
     def setUp(self):
-        self.table = {"Голодный": {"Антилопа": ("Сытый", "Съесть"),
-                                  "Охотник": ("Голодный", "Убежать")}}
+        self.table = {"Голодный": {"Антилопа": ("Сытый", "Съесть")}}
 
     def test_constructor_positive(self):
         lion = Lion("Голодный", self.table)
         self.assertEqual("Голодный", lion.state)
+        self.assertIsNone(lion.action)
 
     def test_constructor_negative(self):
         state = "Дерево"
@@ -22,12 +22,6 @@ class LionTest(TestCase):
         lion.input("Антилопа")
         self.assertEqual("Сытый", lion.state)
         self.assertEqual("Съесть", lion.action)
-
-    def test_save_state(self):
-        lion = Lion("Голодный", self.table)
-        lion.input("Охотник")
-        self.assertEqual("Голодный", lion.state)
-        self.assertEqual("Убежать", lion.action)
 
     def test_wrong_input_symbol(self):
         lion = Lion("Голодный", self.table)
