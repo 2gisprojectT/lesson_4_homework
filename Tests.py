@@ -9,6 +9,7 @@ class LionTest(TestCase):
 
     def test_constructor_positive(self):
         lion = Lion("Голодный", self.table)
+        self.assertEqual(self.table, lion._table)
         self.assertEqual("Голодный", lion.state)
         self.assertIsNone(lion.action)
 
