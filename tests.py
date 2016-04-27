@@ -4,11 +4,6 @@ import unittest
 
 
 class TestLion(TestCase):
-    def test_default(self):
-        lion = Lion()
-        self.assertEqual(lion.state, "сытый")
-        self.assertEqual(lion.act, "спать")
-
     def test_full_antelope(self):
         lion = Lion("сытый")
         lion.work("антилопа")
@@ -47,14 +42,21 @@ class TestLion(TestCase):
 
     def test_full_unknown(self):
         lion = Lion("сытый")
-        self.assertRaises(Exception, lion.work, "приветики")
+        self.assertRaises(ValueError, lion.work, "приветики")
 
     def test_hungry_unknown(self):
         lion = Lion("голодный")
-        self.assertRaises(Exception, lion.work, "приветики")
+        self.assertRaises(ValueError, lion.work, "приветики")
 
     def test_wrong_state(self):
-        self.assertRaises(Exception, Lion, "привет", "ики")
+        self.assertRaises(ValueError, Lion, "приветики")
+
+    def test_right_state(self):
+        lion = Lion("сытый")
+        self.assertEqual(lion.state, "сытый")
+        lion = Lion("голодный")
+        self.assertEqual(lion.state, "голодный")
+
 
 if __name__ == '__main__':
     unittest.main()
