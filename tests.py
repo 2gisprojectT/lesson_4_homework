@@ -1,44 +1,19 @@
 from unittest import TestCase
 import unittest
-from main import LionFSM
+from lion_main import FSM
+from lion_main import lion
 
 
 class LionTests(TestCase):
-    def test_hungry_tree(self):
-        lion = LionFSM("голодный")
-        lion.input("дерево")
-        self.assertEqual(lion.action, "спать")
-        self.assertEqual(lion.state, "голодный")
+    def test_all_dictionary(self):
+        dictionary = lion
+        for state in dictionary.keys():
+            for symbol in dictionary[state].keys():
+                lion_ = FSM(dictionary, state)
+                lion_.input(symbol)
+                self.assertEqual(lion_.action, dictionary[state][symbol]['action'])
+                self.assertEqual(lion_.state, dictionary[state][symbol]['state'])
 
-    def test_hungry_antelope(self):
-        lion = LionFSM("голодный")
-        lion.input("антилопа")
-        self.assertEqual(lion.action, "съесть")
-        self.assertEqual(lion.state, "сытый")
-
-    def test_hungry_hunter(self):
-        lion = LionFSM("голодный")
-        lion.input("охотник")
-        self.assertEqual(lion.action, "убежать")
-        self.assertEqual(lion.state, "голодный")
-
-    def test_full_tree(self):
-        lion = LionFSM("сытый")
-        lion.input("дерево")
-        self.assertEqual(lion.action, "смотреть")
-        self.assertEqual(lion.state, "голодный")
-
-    def test_full_antelope(self):
-        lion = LionFSM("сытый")
-        lion.input("антилопа")
-        self.assertEqual(lion.action, "спать")
-        self.assertEqual(lion.state, "голодный")
-
-    def test_full_hunter(self):
-        lion = LionFSM("сытый")
-        lion.input("охотник")
-        self.assertEqual(lion.action, "убежать")
-        self.assertEqual(lion.state, "голодный")
 
 if __name__ == '__main__':
     unittest.main()
