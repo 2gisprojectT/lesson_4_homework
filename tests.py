@@ -1,7 +1,7 @@
 from unittest import TestCase
 import unittest
-from lion_main import FSM
-from lion_main import lion
+from main import FSM
+from main import lion
 
 
 class LionTests(TestCase):
