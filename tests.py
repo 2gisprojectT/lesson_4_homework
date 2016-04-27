@@ -40,16 +40,15 @@ class TestLion(TestCase):
         self.assertEqual(lion.state, "голодный")
         self.assertEqual(lion.act, "спать")
 
-    def test_full_unknown(self):
+    def test_unknown_input(self):
         lion = Lion("сытый")
-        self.assertRaises(ValueError, lion.work, "приветики")
-
-    def test_hungry_unknown(self):
-        lion = Lion("голодный")
         self.assertRaises(ValueError, lion.work, "приветики")
 
     def test_wrong_state(self):
         self.assertRaises(ValueError, Lion, "приветики")
+
+    def test_empty_constructor(self):
+        self.assertRaises(ValueError, Lion, None)
 
     def test_right_state(self):
         lion = Lion("сытый")

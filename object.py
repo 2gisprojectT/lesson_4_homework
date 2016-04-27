@@ -1,9 +1,8 @@
 class Lion:
     def __init__(self, state):
-        if state == "сытый" or state == "голодный":
-            self.state = state
-        else:
+        if state != "сытый" or state != "голодный":
             raise ValueError("Нет такого состояния")
+        self.state = state
         self.act = "спать"
 
     def work(self, event):
@@ -27,7 +26,7 @@ class Lion:
             else:
                 self.act = "спать"
         else:
-            raise ValueError("Ерунда на входе")
+            raise ValueError("Неверное входное значение")
 
     def __str__(self):
         return '%s, %s' % (self.act, self.state)
