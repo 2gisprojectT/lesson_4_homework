@@ -1,6 +1,6 @@
 class Lion:
     def __init__(self, state):
-        if state != "сытый" or state != "голодный":
+        if state != "сытый" and state != "голодный":
             raise ValueError("Нет такого состояния")
         self.state = state
         self.act = "спать"
