@@ -1,21 +1,29 @@
-class LionFSM:
-    lion_get = {"голодный":
-                    {"антилопа": {"действие": "съесть", "состояние": "сытый"},
-                     "охотник": {"действие": "убежать", "состояние": "голодный"},
-                     "дерево": {"действие": "спать", "состояние": "голодный"}},
-                "сытый":
-                    {"антилопа": {"действие": "спать", "состояние": "голодный"},
-                     "охотник": {"действие": "убежать", "состояние": "голодный"},
-                     "дерево": {"действие": "смотреть", "состояние": "голодный"}}}
+"""
+Структура словаря имеет вид:
+    {<состояние>:<символ>:{"action":<действие>,"состояние":<новое состояние>}
+"""
+lion = {"голодный":
+            {"антилопа": {"action": "съесть", "state": "сытый"},
+             "охотник": {"action": "убежать", "state": "голодный"},
+             "дерево": {"action": "спать", "state": "голодный"}},
+        "сытый":
+            {"антилопа": {"action": "спать", "state": "голодный"},
+             "охотник": {"action": "убежать", "state": "голодный"},
+             "дерево": {"action": "смотреть", "state": "голодный"}}}
 
-    def __init__(self, state):
-        if state != "голодный" and state != "сытый":
-            raise ValueError("Состояние не определено")
-        self.action = ""
-        self.state = state
+
+class FSM:
+    def __init__(self, dictionary, state):
+        if not state in dictionary.keys():
+            raise ValueError("Состояния нет в словаре переходов")
+        else:
+            self.dictionary = dictionary
+            self.state = state
+            self.action = ""
 
     def input(self, symbol):
-        if symbol != "антилопа" and symbol != "охотник" and symbol != "дерево":
-            raise ValueError('Неверный событие')
-        self.action = self.lion_get[self.state][symbol]['действие']
-        self.state = self.lion_get[self.state][symbol]['состояние']
+        if not symbol in self.dictionary[self.state].keys():
+            raise ValueError('Входного символа нет в словаре переходов')
+        else:
+            self.action = self.dictionary[self.state][symbol]['action']
+            self.state = self.dictionary[self.state][symbol]['state']
