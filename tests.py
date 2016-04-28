@@ -53,8 +53,10 @@ class TestLion(TestCase):
     def test_right_state(self):
         lion = Lion("сытый")
         self.assertEqual(lion.state, "сытый")
+        self.assertEqual(lion.act, "спать")
         lion = Lion("голодный")
         self.assertEqual(lion.state, "голодный")
+        self.assertEqual(lion.act, "спать")
 
 
 if __name__ == '__main__':
