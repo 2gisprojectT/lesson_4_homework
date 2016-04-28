@@ -5,7 +5,7 @@ class FSM:
         else:
             self.dictionary = dictionary
             self.state = state
-            self.action = ""
+            self.action = None
 
     def input(self, symbol):
         if not symbol in self.dictionary[self.state].keys():
