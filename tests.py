@@ -2,12 +2,7 @@ from unittest import TestCase
 import unittest
 from main import FSM
 
-lion = {"голодный": {"антилопа": {"action": "съесть", "state": "сытый"},
-                     "охотник": {"action": "убежать", "state": "голодный"},
-                     "дерево": {"action": "спать", "state": "голодный"}},
-        "сытый": {"антилопа": {"action": "спать", "state": "голодный"},
-                  "охотник": {"action": "убежать", "state": "голодный"},
-                  "дерево": {"action": "смотреть", "state": "голодный"}}}
+lion = {"голодный": {"антилопа": {"action": "съесть", "state": "сытый"}}}
 
 
 class LionTests(TestCase):
