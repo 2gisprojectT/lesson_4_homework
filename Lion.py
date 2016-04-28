@@ -1,10 +1,10 @@
 class Lion:
     def __init__(self, state):
-        self.action = ""
-        if state.lower() == "сытый" or state.lower() == "голодный":
-            self.state = state
-        else:
+        if not state.lower() == "сытый" and not state.lower() == "голодный":
             raise ValueError("Неверное состояние!")
+
+        self.action = ""
+        self.state = state
 
     def act(self, action):
         event = action.lower()
