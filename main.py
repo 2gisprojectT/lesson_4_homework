@@ -1,13 +1,3 @@
-lion = {"state": {"голодный": {"symbol":
-                                   {"антилопа": {"action": "съесть", "state": "сытый"},
-                                    "охотник": {"action": "убежать", "state": "голодный"},
-                                    "дерево": {"action": "спать", "state": "голодный"}}}},
-        "state": {"сытый": {"symbol":
-                                {"антилопа": {"action": "спать", "state": "голодный"},
-                                 "охотник": {"action": "убежать", "state": "голодный"},
-                                 "дерево": {"action": "смотреть", "state": "голодный"}}}}}
-
-
 class FSM:
     def __init__(self, dictionary, state):
         if not state in dictionary["state"].keys():
